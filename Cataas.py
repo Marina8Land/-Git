@@ -6,7 +6,7 @@ import requests
 from io import BytesIO
 
 
-def load_image():
+def load_image(url):
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -18,6 +18,13 @@ def load_image():
         return None
 
 
+def set_image():
+    img = load_image(url)
+
+    if img:
+        lable.config(image=img)
+        lable.image = img
+
 
 window = Tk()
 window.title('Котики')
@@ -25,11 +32,12 @@ window.geometry('600x400')
 
 lable = Label()
 lable.pack()
-url = 'https://cataas.com/cat'
-img = load.image(url)
 
-if img:
-    lable.config(image=img)
-    lable.image = img
+update_button = Button(text='Обновить', command=set_image)
+update_button.pack()
+
+url = 'https://cataas.com/cat'
+
+set_image()
 
 window.mainloop()
