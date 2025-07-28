@@ -26,6 +26,8 @@ def set_image():
         lable.config(image=img)
         lable.image = img
 
+def exit():
+    window.destroy()
 
 window = Tk()
 window.title('Котики')
@@ -34,8 +36,16 @@ window.geometry('600x520')
 lable = Label()
 lable.pack()
 
-update_button = Button(text='Обновить', command=set_image)
-update_button.pack()
+# update_button = Button(text='Обновить', command=set_image)
+# update_button.pack()
+
+menu_bar = Menu(window)
+window.config(menu=menu_bar)
+file_menu =Menu()
+menu_bar.add_cascade(label='Файл')
+menu_bar.add_command(label='Загрузить фото', command=set_image)
+menu_bar.add_command(label='Загрузить фото', command=set_image)
+menu_bar.add_command(label='Загрузить фото', command=set_image)
 
 url = 'https://cataas.com/cat'
 
